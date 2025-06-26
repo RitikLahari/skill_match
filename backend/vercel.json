@@ -8,20 +8,12 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "server.js"
+      "src": "/api/v1/(.*)",
+      "dest": "/server.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/server.js"
     }
-  ],
-  "env": {
-    "PORT": "4000",
-    "CLOUDINARY_CLOUD_NAME": "dg7aj3swc",
-    "CLOUDINARY_API_KEY": "766473568294872",
-    "CLOUDINARY_API_SECRET": "iZZqj5u1l1KSccFeWg2rGPvKiLw",
-    "FRONTEND_URL": "https://skill-match-92qm.vercel.app/",
-    "MONGODB_URI": "mongodb+srv://ritik:123@cluster0.ngj7zke.mongodb.net/"
-  }
+  ]
 }

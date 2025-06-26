@@ -35,6 +35,13 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/job", jobRouter);
 app.use("/api/v1/application", applicationRouter);
 app.use("/api/v1/statsController",statsRouter)
+app.get('/',(req,res)=>{
+       res.send({
+          activeStatus:true,
+          error:false,
+          
+       })
+})
 dbConnection();
 
 app.use(errorMiddleware);
