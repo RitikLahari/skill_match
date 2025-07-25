@@ -3,7 +3,8 @@ import dotenv from "dotenv"
 dotenv.config()
 
 //Database connection here!
- const dbConnection  = ()=>{
+ const dbConnection  =async ()=>{
+    console.log("🌐 Connecting to:", process.env.MONGO_URI); // debug
     mongoose.connect(process.env.MONGO_URI,{
        dbName: "Job_Portal"
 
