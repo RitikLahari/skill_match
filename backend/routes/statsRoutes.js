@@ -5,4 +5,4 @@ const router = express.Router();
 
 router.get("/stats",isAuthenticated,statsController);
 
-export default router
+export default router 

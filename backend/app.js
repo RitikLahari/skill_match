@@ -31,6 +31,9 @@ app.use(
     tempFileDir: "/tmp/",
   })
 );
+
+dbConnection();
+
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/job", jobRouter);
 app.use("/api/v1/application", applicationRouter);
@@ -42,7 +45,7 @@ app.get('/',(req,res)=>{
           
        })
 })
-dbConnection();
+
 
 app.use(errorMiddleware);
 export default app;
