@@ -179,16 +179,17 @@ const Application = () => {
   }
 
   return (
-    <section className="application">
-      <div className="container">
-        <h3>Application Form</h3>
-        <form onSubmit={handleApplication}>
+    <section className="application" style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #ffffffff 0%, #ffffffff 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ maxWidth: 480, width: '100%', background: '#fff', borderRadius: 18, boxShadow: '0 4px 24px rgba(0,0,0,0.08)', padding: '32px 24px', margin: '32px 0' }}>
+        <h3 style={{ textAlign: 'center', fontWeight: 700, fontSize: 28, marginBottom: 24, color: '#3b3b3b', letterSpacing: 1 }}>Application Form</h3>
+        <form onSubmit={handleApplication} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
           <input
             type="text"
             placeholder="Your Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            style={{ padding: '12px 16px', borderRadius: 8, border: '1px solid #d1d5db', fontSize: 16, marginBottom: 2, outline: 'none', transition: 'border 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.03)' }}
           />
           <input
             type="email"
@@ -196,6 +197,7 @@ const Application = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            style={{ padding: '12px 16px', borderRadius: 8, border: '1px solid #d1d5db', fontSize: 16, marginBottom: 2, outline: 'none', transition: 'border 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.03)' }}
           />
           <input
             type="text"
@@ -203,6 +205,7 @@ const Application = () => {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required
+            style={{ padding: '12px 16px', borderRadius: 8, border: '1px solid #d1d5db', fontSize: 16, marginBottom: 2, outline: 'none', transition: 'border 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.03)' }}
           />
           <input
             type="text"
@@ -210,25 +213,25 @@ const Application = () => {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             required
+            style={{ padding: '12px 16px', borderRadius: 8, border: '1px solid #d1d5db', fontSize: 16, marginBottom: 2, outline: 'none', transition: 'border 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.03)' }}
           />
           <textarea
             placeholder="Cover Letter..."
             value={coverLetter}
             onChange={(e) => setCoverLetter(e.target.value)}
             required
+            style={{ padding: '12px 16px', borderRadius: 8, border: '1px solid #d1d5db', fontSize: 16, minHeight: 80, resize: 'vertical', marginBottom: 2, outline: 'none', transition: 'border 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.03)' }}
           />
-          <div>
-            <label
-              style={{ textAlign: "start", display: "block", fontSize: "20px" }}
-            >
+          <div style={{ marginBottom: 8 }}>
+            <label style={{ textAlign: 'start', display: 'block', fontSize: 18, fontWeight: 500, marginBottom: 6, color: '#374151' }}>
               Upload Resume
-              <span style={{ marginLeft: '8px', color: '#007bff', cursor: 'pointer' }} title="Uploading your resume will offer to autofill the form using AI.">
+              <span style={{ marginLeft: '8px', color: '#7d9bbaff', cursor: 'pointer' }} title="Uploading your resume will offer to autofill the form using AI.">
                 ℹ️
               </span>
-              <p style={{ color: "red", fontSize: "12px", margin: "5px 0 0 0" }}>
+              <p style={{ color: 'red', fontSize: 12, margin: '5px 0 0 0' }}>
                 (Supported formats: PNG, JPEG, WEBP. Max size: 2MB)
               </p>
-              <p style={{ color: "#007bff", fontSize: "13px", margin: "5px 0 0 0" }}>
+              <p style={{ color: '#3e46dcff', fontSize: 13, margin: '5px 0 0 0' }}>
                 Tip: Upload your resume to quickly autofill your details using AI.
               </p>
             </label>
@@ -236,23 +239,34 @@ const Application = () => {
               type="file"
               accept=".png,.jpg,.jpeg,.webp"
               onChange={handleFileChange}
-              style={{ width: "100%" }}
+              style={{ width: '100%', padding: '8px 0', fontSize: 15, borderRadius: 8, border: '1px solid #d1d5db', background: '#f3f4f6' }}
             />
             {fileError && (
-              <p style={{ color: "red", fontSize: "14px", marginTop: "5px" }}>
+              <p style={{ color: 'red', fontSize: 14, marginTop: 5 }}>
                 {fileError}
               </p>
             )}
           </div>
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             disabled={loading}
-            style={{ 
+            style={{
+              background: 'linear-gradient(90deg, #6366f1 0%, #60a5fa 100%)',
+              color: '#fff',
+              fontWeight: 600,
+              fontSize: 18,
+              border: 'none',
+              borderRadius: 8,
+              padding: '12px 0',
+              marginTop: 8,
+              boxShadow: '0 2px 8px rgba(99,102,241,0.08)',
               opacity: loading ? 0.7 : 1,
-              cursor: loading ? "not-allowed" : "pointer" 
+              cursor: loading ? 'not-allowed' : 'pointer',
+              transition: 'background 0.2s',
+              letterSpacing: 1
             }}
           >
-            {loading ? "Submitting..." : "Send Application"}
+            {loading ? 'Submitting...' : 'Send Application'}
           </button>
         </form>
       </div>
