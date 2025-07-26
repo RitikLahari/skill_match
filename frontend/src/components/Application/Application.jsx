@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../../main";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const Application = () => {
   const [name, setName] = useState("");
@@ -19,7 +20,7 @@ const Application = () => {
   const { id } = useParams();
 
   // Function to handle file input changes with validation
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const file = event.target.files[0];
     setFileError("");
     
@@ -44,16 +45,86 @@ const Application = () => {
     }
     
     setResume(file);
+    
+    // Ask user if they want to auto-fill form from resume
+    if (window.confirm("Would you like to auto-fill the form using your resume?")) {
+      await parseResumeWithGemini(file);
+    }
+  };
+
+  const parseResumeWithGemini = async (file) => {
+    try {
+      setLoading(true);
+      
+      // Initialize Gemini AI
+      const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      
+      // Convert image to base64
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      
+      reader.onloadend = async () => {
+        const base64Image = reader.result.split(',')[1];
+        
+        // Prepare the image data
+        const imageParts = [{
+          inlineData: {
+            data: base64Image,
+            mimeType: file.type
+          }
+        }];
+
+        // Generate content from the resume
+        const result = await model.generateContent([
+          `Extract the following information from this resume image: full name, email, phone number, address. Also, generate a short cover letter for applying to a Software Development, Web Development, Machine Learning, or AI role based on the resume content. Format the response as JSON with keys: name, email, phone, address, coverLetter`,
+          ...imageParts
+        ]);
+        
+        const response = await result.response;
+        const text = response.text();
+        
+        try {
+          // Remove markdown code block if present
+          let cleanText = text.trim();
+          if (cleanText.startsWith('```json')) {
+            cleanText = cleanText.replace(/^```json/, '').replace(/```$/, '').trim();
+          } else if (cleanText.startsWith('```')) {
+            cleanText = cleanText.replace(/^```/, '').replace(/```$/, '').trim();
+          }
+          const parsedData = JSON.parse(cleanText);
+          // Update form fields with default values for missing or null fields
+          setName(parsedData.name || "");
+          setEmail(parsedData.email || "");
+          setPhone(parsedData.phone || "");
+          const parsedAddress = parsedData.address !== null ? parsedData.address : "Address not provided";
+          setAddress(parsedAddress);
+          setCoverLetter(parsedData.coverLetter || "");
+          toast.success("Resume data and cover letter extracted successfully!");
+        } catch (error) {
+          console.error("Error parsing response:", text);
+          toast.error("Could not parse resume data. Please fill the form manually.");
+        }
+      };
+    } catch (error) {
+      toast.error("Error processing resume. Please fill the form manually.");
+      console.error("Resume parsing error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleApplication = async (e) => {
     e.preventDefault();
     
     // Validate form
-    if (!name || !email || !phone || !address || !coverLetter) {
-      toast.error("Please fill in all fields");
+    if (!name || !email || !phone || !coverLetter) {
+      toast.error("Please fill in all required fields");
       return;
     }
+
+    // Allow 'address' to be optional
+    const finalAddress = address || "Address not provided";
     
     if (!resume) {
       setFileError("Please upload your resume");
@@ -65,7 +136,7 @@ const Application = () => {
     formData.append("name", name);
     formData.append("email", email);
     formData.append("phone", phone);
-    formData.append("address", address);
+    formData.append("address", finalAddress);
     formData.append("coverLetter", coverLetter);
     formData.append("resume", resume);
     formData.append("jobId", id);
@@ -127,7 +198,7 @@ const Application = () => {
             required
           />
           <input
-            type="number"
+            type="text"
             placeholder="Your Phone Number"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
@@ -150,9 +221,15 @@ const Application = () => {
             <label
               style={{ textAlign: "start", display: "block", fontSize: "20px" }}
             >
-              Upload Resume 
+              Upload Resume
+              <span style={{ marginLeft: '8px', color: '#007bff', cursor: 'pointer' }} title="Uploading your resume will offer to autofill the form using AI.">
+                ℹ️
+              </span>
               <p style={{ color: "red", fontSize: "12px", margin: "5px 0 0 0" }}>
                 (Supported formats: PNG, JPEG, WEBP. Max size: 2MB)
+              </p>
+              <p style={{ color: "#007bff", fontSize: "13px", margin: "5px 0 0 0" }}>
+                Tip: Upload your resume to quickly autofill your details using AI.
               </p>
             </label>
             <input
