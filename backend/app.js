@@ -16,7 +16,7 @@ config({ path: "./config/config.env" });
 app.use(
   cors({
     origin: ["http://localhost:5173","https://skill-match-92qm.vercel.app"],
-    method: ["GET", "POST", "DELETE", "PUT"],
+    methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
 );
