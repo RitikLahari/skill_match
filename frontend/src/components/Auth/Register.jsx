@@ -15,11 +15,14 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const { isAuthorized, setIsAuthorized, user, setUser } = useContext(Context);
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const { data } = await axios.post( 
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/user/register`,
@@ -40,6 +43,8 @@ const Register = () => {
       setIsAuthorized(true);
     } catch (error) {
       toast.error(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -96,7 +101,7 @@ const Register = () => {
               <label>Phone Number</label>
               <div>
                 <input
-                  type="number"
+                  type="text"
                   placeholder="Enter your phone"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
@@ -106,18 +111,26 @@ const Register = () => {
             </div>
             <div className="inputTag">
               <label>Password</label>
-              <div>
+              <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  style={{ paddingRight: 36 }}
                 />
-                <RiLock2Fill />
+                {/* <RiLock2Fill /> */}
+                <span
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  style={{ position: 'absolute', right: 8, cursor: 'pointer', color: '#1a6211ff', fontSize: 18,backgroundColor: 'green' }}
+                  title={showPassword ? 'Hide Password' : 'Show Password'}
+                >
+                  {showPassword ?'🙈' : '👁️'}
+                </span>
               </div>
             </div>
-            <button type="submit" onClick={handleRegister}>
-              Register
+            <button type="submit" onClick={handleRegister} disabled={loading}>
+              {loading ? 'Submitting...' : 'Register'}
             </button>
             <Link to={"/login"}>Login Now</Link>
           </form>

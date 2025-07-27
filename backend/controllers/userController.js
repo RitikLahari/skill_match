@@ -50,7 +50,7 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
       httpOnly: true,  
       expires: new Date(0),
       secure: process.env.NODE_ENV === "production", // Use secure cookies in production
-      sameSite: "None", 
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
     })
     .json({
       success: true,
