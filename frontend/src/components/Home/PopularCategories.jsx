@@ -61,23 +61,60 @@ const PopularCategories = () => {
       icon: <IoGameController />,
     },
   ];
+  // Color palette for cards
+  const cardColors = [
+    '#6366f1', '#fbbf24', '#f472b6', '#34d399', '#60a5fa', '#a78bfa', '#fb7185', '#facc15'
+  ];
+
   return (
-    <div className="categories">
-      <h3>POPULAR CATEGORIES</h3>
-      <div className="banner">
-        {categories.map((element) => {
-          return (
-            <div className="card" key={element.id}>
-              <div className="icon">{element.icon}</div>
-              <div className="text">
-                <p>{element.title}</p>
-                <p>{element.subTitle}</p>
-              </div>
+    <section style={{ width: '100%', padding: 0 ,background: '#ffffffff',}}>
+      <h3 style={{
+        textAlign: 'center',
+        fontWeight: 800,
+        fontSize: 32,
+        letterSpacing: 1,
+        color: '#22223b',
+        marginBottom: 32,
+      }}>POPULAR CATEGORIES</h3>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gap: 28,
+          width: '100%',
+          maxWidth: 1100,
+          margin: '0 auto',
+        }}
+      >
+        {categories.map((element, idx) => (
+          <div
+            key={element.id}
+            style={{
+              background: `linear-gradient(135deg, ${cardColors[idx % cardColors.length]}22 0%, #fff 100%)`,
+              borderRadius: 18,
+              boxShadow: '0 2px 12px rgba(99,102,241,0.08)',
+              padding: '28px 18px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              transition: 'transform 0.18s',
+              border: `2px solid ${cardColors[idx % cardColors.length]}33`,
+              cursor: 'pointer',
+            }}
+            onMouseOver={e => e.currentTarget.style.transform = 'scale(1.04)'}
+            onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+          >
+            <div className="icon" style={{ fontSize: 38, color: cardColors[idx % cardColors.length], marginBottom: 10 }}>
+              {element.icon}
             </div>
-          );
-        })}
+            <div className="text" style={{ textAlign: 'center' }}>
+              <p style={{ fontWeight: 700, fontSize: 20, color: '#18181aff', margin: 0 }}>{element.title}</p>
+              <p style={{ color: cardColors[idx % cardColors.length], fontWeight: 600, fontSize: 15, margin: 0, marginTop: 4 }}>{element.subTitle}</p>
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
 

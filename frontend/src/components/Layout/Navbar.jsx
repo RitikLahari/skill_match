@@ -28,8 +28,8 @@ const Navbar = () => {
   };    
 
   return (
-    <nav className={isAuthorized ? "navbarShow" : "navbarHide"}>
-      <div className="container">
+    <nav className={isAuthorized ? "navbarShow" : "navbarHide"} style={{ background:'black',display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div className="container" >
         <div className="logo">
           <img src="/Skill-Match.png" alt="logo" />
         </div>
@@ -66,7 +66,9 @@ const Navbar = () => {
             </>
           ) : null}
 
-          <button onClick={handleLogout}>LOGOUT</button>
+          {isAuthorized && (
+            <button onClick={handleLogout}>LOGOUT</button>
+          )}
         </ul>
         <div className="hamburger" onClick={() => setShow(!show)}>
           {show ? <AiOutlineClose /> : <GiHamburgerMenu />}

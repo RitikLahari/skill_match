@@ -82,57 +82,167 @@ const HeroSection = () => {
   }, [stats]);
 
   return (
-    <div className="heroSection">
-      <div className="container">
-        <div className="title">
-          <h1>Find a job that suits</h1>
-          <h1>your interests and skills</h1>
-          <p>
-            Discover job opportunities that match your skills and passions.
+    <section
+      style={{
+        minHeight: '100vh',
+        background: '#ffffffff',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '0',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1200,
+          width: '100%',
+          margin: '0 auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 40,
+          padding: '60px 24px 0 24px',
+          flexWrap: 'wrap',
+        }}
+      >
+        <div style={{ flex: 1, minWidth: 320, zIndex: 2 }}>
+          <h1 style={{ fontSize: 48, fontWeight: 800, color: 'black', lineHeight: 1.1, marginBottom: 12, textShadow: '0 2px 16px #f6f6ffff' }}>
+            Find a job that suits
+            <br />
+            <span style={{ color: '#030899ff', background: 'rgba(255,255,255,0.12)', borderRadius: 8, padding: '0 8px' }}>your interests</span> and <span style={{ color: '#f472b6', background: 'rgba(255,255,255,0.12)', borderRadius: 8, padding: '0 8px' }}>skills</span>
+          </h1>
+          <p style={{ fontSize: 20, color: '#ffffffff', marginBottom: 32, fontWeight: 500, textShadow: '0 1px 8px #080808ff' }}>
+            Discover job opportunities that match your skills and passions.<br />
             Connect with employers seeking talent like yours for rewarding careers.
           </p>
         </div>
-        <div className="image">
-          <img src="/heroS.jpg" alt="hero" />
+        <div style={{ flex: 1, minWidth: 320, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}>
+          <img
+            src="/heroS.jpg"
+            alt="hero"
+            style={{
+              width: '100%',
+              maxWidth: 420,
+              borderRadius: 24,
+              boxShadow: '0 8px 32px rgba(99,102,241,0.18)',
+              border: '6px solid #fff',
+              objectFit: 'cover',
+            }}
+          />
         </div>
       </div>
-
-      <div className="details">
-        <motion.div className="card">
-          <div className="icon"><FaSuitcase /></div>
-          <div className="content">
-            <p ref={jobsRef}>0</p>
-            <p>Live Jobs</p>
+      <div
+        style={{
+          width: '100%',
+          maxWidth: 1100,
+          margin: '0 auto',
+          display: 'flex',
+          justifyContent: 'center',
+          gap: 32,
+          marginTop: 48,
+          flexWrap: 'wrap',
+          zIndex: 2,
+        }}
+      >
+        <motion.div
+          className="card"
+          style={{
+            background: 'rgba(255,255,255,0.18)',
+            borderRadius: 18,
+            boxShadow: '0 4px 24px rgba(99,102,241,0.12)',
+            padding: '32px 28px',
+            minWidth: 200,
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backdropFilter: 'blur(8px)',
+            border: '1.5px solid #fff',
+          }}
+          whileHover={{ scale: 1.06 }}
+        >
+          <div className="icon" style={{ fontSize: 38, color: '#6366f1', marginBottom: 8 }}><FaSuitcase /></div>
+          <div className="content" style={{ textAlign: 'center' }}>
+            <p ref={jobsRef} style={{ fontSize: 32, fontWeight: 700, color: 'black', margin: 0 }}>0</p>
+            <p style={{ color: '#6366f1', fontWeight: 600, fontSize: 18, margin: 0 }}>Live Jobs</p>
           </div>
         </motion.div>
-
-        <motion.div className="card">
-          <div className="icon"><FaBuilding /></div>
-          <div className="content">
-            <p ref={companiesRef}>0</p>
-            <p>Companies</p>
+        <motion.div
+          className="card"
+          style={{
+            background: 'rgba(255,255,255,0.18)',
+            borderRadius: 18,
+            boxShadow: '0 4px 24px rgba(99,102,241,0.12)',
+            padding: '32px 28px',
+            minWidth: 200,
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backdropFilter: 'blur(8px)',
+            border: '1.5px solid #fff',
+          }}
+          whileHover={{ scale: 1.06 }}
+        >
+          <div className="icon" style={{ fontSize: 38, color: '#fbbf24', marginBottom: 8 }}><FaBuilding /></div>
+          <div className="content" style={{ textAlign: 'center' }}>
+            <p ref={companiesRef} style={{ fontSize: 32, fontWeight: 700, color: 'black', margin: 0 }}>0</p>
+            <p style={{ color: '#fbbf24', fontWeight: 600, fontSize: 18, margin: 0 }}>Companies</p>
           </div>
         </motion.div>
-
-        <motion.div className="card">
-          <div className="icon"><FaUsers /></div>
-          <div className="content">
-            <p ref={seekersRef}>0</p>
-            <p>Job Seekers</p>
+        <motion.div
+          className="card"
+          style={{
+            background: 'rgba(255,255,255,0.18)',
+            borderRadius: 18,
+            boxShadow: '0 4px 24px rgba(99,102,241,0.12)',
+            padding: '32px 28px',
+            minWidth: 200,
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backdropFilter: 'blur(8px)',
+            border: '1.5px solid #fff',
+          }}
+          whileHover={{ scale: 1.06 }}
+        >
+          <div className="icon" style={{ fontSize: 38, color: '#f472b6', marginBottom: 8 }}><FaUsers /></div>
+          <div className="content" style={{ textAlign: 'center' }}>
+            <p ref={seekersRef} style={{ fontSize: 32, fontWeight: 700, color: 'black', margin: 0 }}>0</p>
+            <p style={{ color: '#f472b6', fontWeight: 600, fontSize: 18, margin: 0 }}>Job Seekers</p>
           </div>
         </motion.div>
-
-        <motion.div className="card">
-          <div className="icon"><FaUserPlus /></div>
-          <div className="content">
-            <p ref={employersRef}>0</p>
-            <p>Employers</p>
+        <motion.div
+          className="card"
+          style={{
+            background: 'rgba(255,255,255,0.18)',
+            borderRadius: 18,
+            boxShadow: '0 4px 24px rgba(99,102,241,0.12)',
+            padding: '32px 28px',
+            minWidth: 200,
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backdropFilter: 'blur(8px)',
+            border: '1.5px solid #fff',
+          }}
+          whileHover={{ scale: 1.06 }}
+        >
+          <div className="icon" style={{ fontSize: 38, color: '#34d399', marginBottom: 8 }}><FaUserPlus /></div>
+          <div className="content" style={{ textAlign: 'center' }}>
+            <p ref={employersRef} style={{ fontSize: 32, fontWeight: 700, color: 'black', margin: 0 }}>0</p>
+            <p style={{ color: '#34d399', fontWeight: 600, fontSize: 18, margin: 0 }}>Employers</p>
           </div>
         </motion.div>
       </div>
-    </div>
-  );
-};
+      {/* Decorative blurred circles removed for white background */}
+    </section>
+)};
 
 export default HeroSection;
 
