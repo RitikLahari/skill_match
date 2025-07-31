@@ -72,13 +72,13 @@ p {
   }
 }
 
-.authPage {
+/* .authPage {
   display: flex;
   min-width: 1500px;
   max-width: 1500px;
   margin: 0 auto;
   min-height: 100vh;
-}
+} */
 .authPage .container {
   flex: 1;
   display: flex;
@@ -1155,7 +1155,7 @@ nav {
   padding: 0 20px;
 }
 nav .container {
-  max-width: 1500px;
+  max-width: 100%;
   min-width: 1500px;
   margin: 0 auto;
   display: flex;

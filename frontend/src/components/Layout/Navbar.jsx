@@ -29,9 +29,9 @@ const Navbar = () => {
 
   return (
     <nav className={isAuthorized ? "navbarShow" : "navbarHide"} style={{ background:'black',display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-      <div className="container" >
+      <div className="container"   >
         <div className="logo">
-          <img src="/Skill-Match.png" alt="logo" />
+          <img src="/Skill-Match.png" alt="logo"  />
         </div>
         <ul className={!show ? "menu" : "show-menu menu"}>
           <li>
