@@ -5,7 +5,7 @@ dotenv.config()
 //Database connection here!
  const dbConnection  =async ()=>{
     console.log("🌐 Connecting to:", process.env.MONGO_URI); // debug
-    mongoose.connect(process.env.MONGO_URI,{
+   await mongoose.connect(process.env.MONGO_URI,{
        dbName: "Job_Portal"
 
     }).then(()=>{ //agar connect ho jaye toh!
