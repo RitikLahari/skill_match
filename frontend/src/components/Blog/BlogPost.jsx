@@ -33,8 +33,8 @@ const BlogPost = ({ blog }) => {
   };
 
   return (
-    <div style={{ background: "#fff", borderRadius: 12, boxShadow: "0 2px 12px #e0e7ff", marginBottom: 32, padding: 24 }}>
-      <h3 style={{ color: "#6366f1", marginBottom: 8 }}>{blog.title}</h3>
+    <div style={{ background: "#fff", borderRadius: 12, boxShadow: "0 2px 12px #dde3f8ff", marginBottom: 32, padding: 24 }}>
+      <h3 style={{ color: "#000000ff", marginBottom: 8 }}>{blog.title}</h3>
       <div style={{ fontSize: 15, color: "#22223b", marginBottom: 12 }}>{blog.content}</div>
       <div style={{ fontSize: 13, color: "#888", marginBottom: 8 }}>
         <span>By {blog.authorName} ({blog.authorRole})</span> | <span>{new Date(blog.createdAt).toLocaleString()}</span>
@@ -43,7 +43,7 @@ const BlogPost = ({ blog }) => {
       <button
         onClick={() => setShowComments((prev) => !prev)}
         style={{
-          background: showComments ? "#f472b6" : "#6366f1",
+          background: showComments ? "#ff0a0aff" : "#6366f1",
           color: "#fff",
           border: "none",
           borderRadius: 8,

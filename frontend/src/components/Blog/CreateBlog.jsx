@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../../main";
 import axios from "axios";
 
@@ -13,7 +13,7 @@ const CreateBlog = () => {
   const authorName = user?.name || "Anonymous";
   const authorEmail = user?.email || "unknown@example.com";
   const authorRole = user?.role || "Job Seeker or Employer";
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -31,6 +31,7 @@ const CreateBlog = () => {
       setCategory("");
       setShowModal(false);
       toast.success("Blog posted!");
+      if (onPost) onPost();
     } catch (err) {
       // handle error
     } finally {
