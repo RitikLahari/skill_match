@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a Password!"],
     minLength: [8, "Password must contain at least 8 characters!"],
-    maxLength: [32, "Password cannot exceed 32 characters!"],
+    // maxLength: [32, "Password cannot exceed 32 characters!"],
     select: false,
   },
   role: {
@@ -43,6 +43,7 @@ userSchema.pre("save", async function (next) {
     next();
   }
   this.password = await bcrypt.hash(this.password, 10);
+  next();
 });
 
 //COMPARING THE USER PASSWORD ENTERED BY USER WITH THE USER SAVED PASSWORD

@@ -3,7 +3,8 @@ import dbConnection  from "./database/dbConnection.js";
 import jobRouter from "./routes/jobRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import applicationRouter from "./routes/applicationRoutes.js";
-import statsRouter from "./routes/statsRoutes.js"
+import statsRouter from "./routes/statsRoutes.js";
+import otpRouter from "./routes/otpRoutes.js";
 import { config } from "dotenv";
 import cors from "cors";
 import { errorMiddleware } from "./middlewares/error.js";
@@ -37,14 +38,15 @@ app.use(
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/job", jobRouter);
 app.use("/api/v1/application", applicationRouter);
-app.use("/api/v1/statsController",statsRouter)
+app.use("/api/v1/statsController",statsRouter);
+app.use("/api/v1/otp", otpRouter);
 app.get('/',(req,res)=>{
        res.send({
           activeStatus:true,
           error:false,
           
        })
-})
+}) 
 
 
 app.use(errorMiddleware);

@@ -11,7 +11,7 @@ cloudinary.v2.config({
 const startServer = async () => {
   try {
     await dbConnection(); // Wait for MongoDB connection
-    const PORT = process.env.PORT || 5000;
+    const PORT = process.env.PORT || 4000;
     app.listen(PORT, () => {
       console.log(`🚀 Server running at http://localhost:${PORT}`);
     });
