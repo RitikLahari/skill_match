@@ -1,4 +1,4 @@
-# Job Portal App with MERN Stack
+# Skill Match with MERN Stack
 
 A comprehensive job portal application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. This application allows users to browse job listings, apply for jobs, and manage their applications seamlessly.
 
@@ -8,6 +8,7 @@ A comprehensive job portal application built using the MERN (MongoDB, Express.js
 - **Job Listings:** Browse through a wide range of job listings fetched from MongoDB.
 - **Application Management:** Job seekers can manage their job applications, and employers can view and manage received applications.
 - **Responsive Design:** Ensures a seamless experience across all devices.
+- ** Generative AI : for Resume screening to auto fill form which enhance the user experiences 
 
 ## Technologies Used
 
@@ -15,17 +16,7 @@ A comprehensive job portal application built using the MERN (MongoDB, Express.js
 - **Backend:** Node.js, Express.js, MongoDB
 - **Authentication:** JWT (JSON Web Tokens), Bcrypt (for password hash)
 - **Image Upload:** Cloudinary for storing and managing uploaded images
-- **Deployment:** Vercel (frontend), Render(backend), MongoDB Atlas (database)
-
-## Getting Started
-
-To get a local copy up and running follow these simple steps.
-
-### Prerequisites
-
-- Node.js installed on your machine with latest version or v22.2.0 above
-- MongoDB Atlas account (or local MongoDB server)
-- Cloudinary account for image storage
+- **Deployment:** Vercel (frontend), Vercel(backend), MongoDB Atlas (database)
 
 ### Installation
 
@@ -40,12 +31,7 @@ To get a local copy up and running follow these simple steps.
    cd frontend
    npm install
    ```
-
-3. ## If you don't want to change the`.env` credentials skip step 4 and move to step 5.
-
-4. Set up environment variables:
-
-   - Create a `config.env` file after creating a `config folder` in the backend directory, containing the following variables:
+3. Set up environment variables:
 
    ```env
    PORT=
@@ -59,17 +45,13 @@ To get a local copy up and running follow these simple steps.
    COOKIE_EXPIRE=
    ```
 
-   Replace each value with your specific configuration details.
-
-5. Run the application backend (make sure you are in `/backend` directory) :
-
-   ```sh
+4. Run the application backend (make sure you are in `/backend` directory) 
    node server.js
-   ```
+ 
 
-6. Run the application frontend (make sure you are in `/frontend` directory) :
+5. Run the application frontend (make sure you are in `/frontend` directory) :
    ```sh
    npm run dev
    ```
-7. Open your browser and navigate to `http://localhost:5173` to view the app.
+6. Open your browser and navigate to `http://localhost:5173` to view the app.
 
