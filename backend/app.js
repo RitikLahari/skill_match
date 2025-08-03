@@ -5,6 +5,7 @@ import userRouter from "./routes/userRoutes.js";
 import applicationRouter from "./routes/applicationRoutes.js";
 import statsRouter from "./routes/statsRoutes.js";
 import otpRouter from "./routes/otpRoutes.js";
+import blogRouter from "./routes/blogRoutes.js";
 import { config } from "dotenv";
 import cors from "cors";
 import { errorMiddleware } from "./middlewares/error.js";
@@ -40,6 +41,7 @@ app.use("/api/v1/job", jobRouter);
 app.use("/api/v1/application", applicationRouter);
 app.use("/api/v1/statsController",statsRouter);
 app.use("/api/v1/otp", otpRouter);
+app.use("/api/v1/blog", blogRouter);
 app.get('/',(req,res)=>{
        res.send({
           activeStatus:true,
