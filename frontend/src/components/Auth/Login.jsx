@@ -116,7 +116,7 @@ const Login = () => {
             left: 0,
             width: "100%",
             height: "100%",
-            background: "rgba(30,41,59,0.55)",
+            background: "rgba(148, 123, 123, 0.39)",
             backdropFilter: "blur(6px)",
             zIndex: 1,
           }}
@@ -124,7 +124,7 @@ const Login = () => {
         <div
           className="container"
           style={{
-            background: "rgba(255,255,255,0.18)",
+            background: "rgba(62, 62, 62, 0.42)",
             borderRadius: 18,
             boxShadow: "0 8px 32px rgba(30,41,59,0.18)",
             padding: "40px 32px",
