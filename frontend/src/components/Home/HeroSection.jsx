@@ -112,9 +112,9 @@ const HeroSection = () => {
           <h1 style={{ fontSize: 48, fontWeight: 800, color: 'black', lineHeight: 1.1, marginBottom: 12, textShadow: '0 2px 16px #f6f6ffff' }}>
             Find a job that suits
             <br />
-            <span style={{ color: '#030899ff', background: 'rgba(255,255,255,0.12)', borderRadius: 8, padding: '0 8px' }}>your interests</span> and <span style={{ color: '#f472b6', background: 'rgba(255,255,255,0.12)', borderRadius: 8, padding: '0 8px' }}>skills</span>
+            <span style={{ color: '#030899ff', background: 'rgba(255, 255, 255, 0.82)', borderRadius: 8, padding: '0 8px' }}>your interests</span> and <span style={{ color: '#f472b6', background: 'rgba(255,255,255,0.12)', borderRadius: 8, padding: '0 8px' }}>skills</span>
           </h1>
-          <p style={{ fontSize: 20, color: '#ffffffff', marginBottom: 32, fontWeight: 500, textShadow: '0 1px 8px #080808ff' }}>
+          <p style={{ fontSize: 20, color: '#000000ff', marginBottom: 32, fontWeight: 500, textShadow: '0 1px 8px #ffffffff' }}>
             Discover job opportunities that match your skills and passions.<br />
             Connect with employers seeking talent like yours for rewarding careers.
           </p>
@@ -127,8 +127,8 @@ const HeroSection = () => {
               width: '100%',
               maxWidth: 420,
               borderRadius: 24,
-              boxShadow: '0 8px 32px rgba(99,102,241,0.18)',
-              border: '6px solid #fff',
+              boxShadow: '0 8px 32px rgba(255, 255, 255, 1)',
+              border: '6px solid #ffffffff',
               objectFit: 'cover',
             }}
           />
@@ -160,7 +160,7 @@ const HeroSection = () => {
             flexDirection: 'column',
             alignItems: 'center',
             backdropFilter: 'blur(8px)',
-            border: '1.5px solid #fff',
+            border: '1.5px solid #000000ff',
           }}
           whileHover={{ scale: 1.06 }}
         >
@@ -183,7 +183,7 @@ const HeroSection = () => {
             flexDirection: 'column',
             alignItems: 'center',
             backdropFilter: 'blur(8px)',
-            border: '1.5px solid #fff',
+            border: '1.5px solid #000000ff',
           }}
           whileHover={{ scale: 1.06 }}
         >
@@ -206,7 +206,7 @@ const HeroSection = () => {
             flexDirection: 'column',
             alignItems: 'center',
             backdropFilter: 'blur(8px)',
-            border: '1.5px solid #fff',
+            border: '1.5px solid #000000ff',
           }}
           whileHover={{ scale: 1.06 }}
         >
@@ -229,7 +229,7 @@ const HeroSection = () => {
             flexDirection: 'column',
             alignItems: 'center',
             backdropFilter: 'blur(8px)',
-            border: '1.5px solid #fff',
+            border: '1.5px solid #080000ff',
           }}
           whileHover={{ scale: 1.06 }}
         >
