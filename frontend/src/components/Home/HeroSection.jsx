@@ -226,7 +226,7 @@ const HeroSection = () => {
             minWidth: 200,
             flex: 1,
             display: 'flex',
-            flexDirection: 'column',
+            flexDirection: 'column',   
             alignItems: 'center',
             backdropFilter: 'blur(8px)',
             border: '1.5px solid #080000ff',
