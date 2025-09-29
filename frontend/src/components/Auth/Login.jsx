@@ -96,17 +96,21 @@ const Login = () => {
       <section
         className="authPage"
         style={{
-          width: "100vw",
-          minHeight: "150vh",
-          margin: 0,
-          padding: 0,
-          background: "url(bg.png) center/cover no-repeat",
-          position: "relative",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxSizing: "border-box",
-        }}
+    width: "100vw",
+    height: "100vh",
+    minHeight: "100vh",
+    margin: 0,
+    padding: 0,
+    background: "url(bg.png) center/cover no-repeat",
+    position: "relative",
+    display: "flex",
+    // alignItems: "flex-start",        // 👈 push form to top on small screens
+    justifyContent: "center",
+    boxSizing: "border-box",
+    overflowY: "auto",               // 👈 allow scrolling
+    paddingTop: "100px",              // 👈 gap from top
+    paddingBottom: "20px",           // 👈 bottom padding for mobile keyboards
+  }}
       >
         {/* Glassmorphism overlay */}
         <div
@@ -115,8 +119,8 @@ const Login = () => {
             top: 0,
             left: 0,
             width: "100%",
-            height: "100%",
-            background: "rgba(148, 123, 123, 0.39)",
+            // height: "100%",
+            // background: "rgba(233, 233, 233, 0.85)",
             backdropFilter: "blur(6px)",
             zIndex: 1,
           }}
@@ -129,7 +133,7 @@ const Login = () => {
             boxShadow: "0 8px 32px rgba(30,41,59,0.18)",
             padding: "40px 32px",
             maxWidth: 400,
-            width: "100%",
+            width: "90%",               // 👈 responsive width on small screens
             margin: "32px 0",
             zIndex: 2,
             border: "1.5px solid rgba(255,255,255,0.25)",
@@ -154,7 +158,7 @@ const Login = () => {
           </div>
           <form style={{ width: "100%" }} onSubmit={handleLogin}>
             <div className="inputTag" style={{ marginBottom: 18 }}>
-              <label style={{ fontWeight: 600, color: "#fff", textShadow: "0 1px 8px #22223b" }}>
+              <label style={{ fontWeight: 600, color: "#ffffffff" }}>
                 Login As
               </label>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -165,7 +169,7 @@ const Login = () => {
                     flex: 1,
                     padding: "10px 12px",
                     borderRadius: 8,
-                    border: "1px solid #fff",
+                    border: "1px solid #000000ff",
                     fontSize: 15,
                     outline: "none",
                     background: "rgba(255,255,255,0.25)",
@@ -180,7 +184,7 @@ const Login = () => {
               </div>
             </div>
             <div className="inputTag" style={{ marginBottom: 18 }}>
-              <label style={{ fontWeight: 600, color: "#fff", textShadow: "0 1px 8px #22223b" }}>
+              <label style={{ fontWeight: 600, color: "#ffffffff" }}>
                 Email Address
               </label>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -193,7 +197,7 @@ const Login = () => {
                     flex: 1,
                     padding: "10px 12px",
                     borderRadius: 8,
-                    border: "1px solid #fff",
+                    border: "1px solid #111111ff",
                     fontSize: 15,
                     outline: "none",
                     background: "rgba(255,255,255,0.25)",
@@ -204,7 +208,7 @@ const Login = () => {
               </div>
             </div>
             <div className="inputTag" style={{ marginBottom: 18 }}>
-              <label style={{ fontWeight: 600, color: "#fff", textShadow: "0 1px 8px #22223b" }}>
+              <label style={{ fontWeight: 600, color: "#ffffffff" }}>
                 Password
               </label>
               <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
@@ -217,7 +221,7 @@ const Login = () => {
                     flex: 1,
                     padding: "10px 12px",
                     borderRadius: 8,
-                    border: "1px solid #fff",
+                    border: "1px solid #000000ff",
                     fontSize: 15,
                     outline: "none",
                     background: "rgba(255,255,255,0.25)",
@@ -231,7 +235,7 @@ const Login = () => {
                     position: "absolute",
                     right: 8,
                     cursor: "pointer",
-                    color: "#fff",
+                    color: "#ffffffff",
                     fontSize: 18,
                     textShadow: "0 1px 8px #22223b",
                   }}
@@ -245,7 +249,7 @@ const Login = () => {
               type="submit"
               disabled={loading}
               style={{
-                background: "rgba(255,255,255,0.85)",
+                background: "rgba(255, 255, 255, 0.85)",
                 color: "#22223b",
                 fontWeight: 700,
                 fontSize: 18,
@@ -261,23 +265,25 @@ const Login = () => {
             >
               {loading ? "Submitting..." : "Login"}
             </button>
-            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 12 }}>
-              <Link
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <span>
+                <Link
                 to={"/register"}
                 style={{
                   color: "#fff",
                   fontWeight: 600,
-                  textDecoration: "underline",
+                  // textDecoration: "underline",
                 }}
               >
                 Register Now
               </Link>
+              </span>
               <span
                 style={{
                   color: "#fff",
                   fontWeight: 600,
-                  cursor: "pointer",
-                  textDecoration: "underline",
+                  cursor: "pointer", 
+                  // textDecoration: "underline",
                 }}
                 onClick={() => setShowForgot(true)}
               >

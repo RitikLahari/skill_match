@@ -57,17 +57,19 @@ const Register = () => {
     <>
     <section
   className="authPage"
-  style={{
-    width: '100vw',
-    minHeight: '150vh',
+   style={{
+    width: "100vw",
+    minHeight: "100vh",
     margin: 0,
     padding: 0,
-    background: 'url(bg.png) center/cover no-repeat',
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    boxSizing: 'border-box',
+    background: "url(bg.png) center/cover no-repeat",
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    boxSizing: "border-box",
+    overflowY: "auto",               // 👈 allow scrolling
+    paddingTop: "100px",              // 👈 gap from top
+    // paddingBottom: "30px",           // 👈 bottom padding for mobile keyboards
   }}
 >
 
@@ -77,27 +79,27 @@ const Register = () => {
           top: 0,
           left: 0,
           width: '100%',
-          height: '100%',
-          background: 'rgba(148, 123, 123, 0.39)',
-          backdropFilter: 'blur(6px)',
+          // height: '100%',
+          // background: 'rgba(148, 123, 123, 0.39)',
+          // backdropFilter: 'blur(6px)',
           zIndex: 0.5,
         }} />
         <div
           className="container"
           style={{
-            background: 'rgba(62, 62, 62, 0.42)',
+            background: "rgba(62, 62, 62, 0.42)",
             borderRadius: 18,
-            boxShadow: '0 8px 32px rgba(30,41,59,0.18)',
-            // padding: '40px 32px',
+            boxShadow: "0 8px 32px rgba(30,41,59,0.18)",
+            padding: "40px 32px",
             maxWidth: 400,
-            width: '100%',
-            margin: '32px 0',
-            zIndex: 1,
-            border: '1.5px solid rgba(255,255,255,0.25)',
-            backdropFilter: 'blur(5px)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            width: "90%",               // 👈 responsive width on small screens
+            margin: "32px 0",
+            zIndex: 2,
+            border: "1.5px solid rgba(255,255,255,0.25)",
+            backdropFilter: "blur(12px)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <div className="header" style={{ textAlign: 'center', marginBottom: 24 }}>
@@ -106,7 +108,7 @@ const Register = () => {
           <form style={{ width: '100%' }}>
             <div className="inputTag" style={{ marginBottom: 18 }}>
               <label style={{ fontWeight: 600, color: '#fff', textShadow: '0 1px 8px #22223b' }}>Register As</label>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                 <select value={role} onChange={(e) => setRole(e.target.value)} style={{ flex: 1, padding: '10px 12px', borderRadius: 8, border: '1px solid #fff', fontSize: 15, outline: 'none', background: 'rgba(255,255,255,0.25)', color: '#22223b' }}>
                   <option value="">Select Role</option>
                   <option value="Employer">Employer</option>
@@ -115,9 +117,12 @@ const Register = () => {
                 <FaRegUser style={{ color: 'black', fontSize: 20, textShadow: '0 1px 8px #22223b' }} />
               </div>
             </div>
+
+            {/* name  */}
+            <div>
             <div className="inputTag" style={{ marginBottom: 18 }}>
               <label style={{ fontWeight: 600, color: '#fff', textShadow: '0 1px 8px #22223b' }}>Name</label>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
                 <input
                   type="text"
                   placeholder="Enter your name"
@@ -130,7 +135,7 @@ const Register = () => {
             </div>
             <div className="inputTag" style={{ marginBottom: 18 }}>
               <label style={{ fontWeight: 600, color: '#fff', textShadow: '0 1px 8px #22223b' }}>Email Address</label>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ display: 'flex', alignItems: 'center'}}>
                 <input
                   type="email"
                   placeholder="Enter your email"
@@ -141,6 +146,7 @@ const Register = () => {
                 <MdOutlineMailOutline style={{ color: 'black', fontSize: 18, textShadow: '0 1px 8px #22223b' }} />
               </div>
             </div>
+           
             <div className="inputTag" style={{ marginBottom: 18 }}>
               <label style={{ fontWeight: 600, color: '#fff', textShadow: '0 1px 8px #22223b' }}>Phone Number</label>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -173,6 +179,7 @@ const Register = () => {
                 </span>
               </div>
             </div>
+             </div>
             <button
               type="submit"
               onClick={handleRegister}
@@ -193,12 +200,12 @@ const Register = () => {
                 letterSpacing: 1,
                 width: '100%',
                 hover: {
-                  background: 'rgba(24, 40, 49, 0.95)',
+                  background: 'rgba(5, 77, 119, 0.95)',
               }}}
             >
               {loading ? 'Submitting...' : 'Register'}
             </button>
-            <Link to={"/login"} style={{ display: 'block', textAlign: 'center', marginTop: 16, color: '#fff', fontWeight: 600, textDecoration: 'underline', textShadow: '0 1px 8px #22223b' }}>Login Now</Link>
+            <Link to={"/login"} style={{ display: 'block', textAlign: 'center', marginTop: 16, color: '#0c0c0cff', fontWeight: 600 , background: 'rgba(255,255,255,0.85)'}}>Already Registered?  Login</Link>
           </form>
         </div>
       </section>
