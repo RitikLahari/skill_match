@@ -17,8 +17,8 @@ const Home = () => {
       <section className="homePage page">
         <HeroSection />
         <HowItWorks />
-        <PopularCategories />
-        <PopularCompanies />
+        {/* <PopularCategories /> */}
+        {/* <PopularCompanies /> */}
       </section>
     </>
   );

@@ -2,8 +2,9 @@
 // export default HeroSection;
 import React, { useRef, useEffect, useState } from "react";
 import axios from "axios";
-import { FaBuilding, FaSuitcase, FaUsers, FaUserPlus } from "react-icons/fa";
+import { FaBuilding, FaSuitcase, FaUsers, FaUserPlus, FaSearch, FaBriefcase } from "react-icons/fa";
 import { animate, motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   const [stats, setStats] = useState({
