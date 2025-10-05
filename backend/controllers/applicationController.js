@@ -141,32 +141,37 @@ export const acceptApplication = catchAsyncErrors(async (req, res, next) => {
   await application.save();
 
   // Send acceptance email (best-effort)
-  try {
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : 587,
-      secure: process.env.SMTP_SECURE === "true",
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
+  // Only attempt email if SMTP settings appear configured
+  if ( !process.env.SMTP_MAIL || !process.env.SMTP_PASSWORD) {
+    console.info("SMTP not configured - skipping acceptance email. Set SMTP_HOST, SMTP_USER and SMTP_PASS to enable email sending.");
+  } else {
+    try {
+      const transporter = nodemailer.createTransport({
+       service: "gmail",
+        auth: {
+          user: process.env.SMTP_MAIL,
+          pass: process.env.SMTP_PASSWORD,
+        },
+      });
 
-    const mailOptions = {
-      from: process.env.EMAIL_FROM || process.env.SMTP_USER,
-      to: application.email,
-      subject: "Your application has been accepted",
-      text: `Hello ${application.name},\n\nGood news — your application has been accepted by the employer. You can now chat with them via the portal.\n\nBest,\nSkill-Match Team`,
-      html: `<p>Hello ${application.name},</p><p>Good news — your application has been <strong>accepted</strong> by the employer. You can now chat with them via the portal.</p><p>Best,<br/>Skill-Match Team</p>`,
-    };
+      const mailOptions = {
+        from: process.env.SMTP_MAIL,
+        to: application.email,
+        subject: "Your application has been accepted",
+        text: `Hello ${application.name},\n\nGood news — your application has been accepted by the employer. You can now chat with them via the portal.\n\nBest,\nSkill-Match Team`,
+        html: `<p>Hello ${application.name},</p><p>Good news — your application has been <strong>accepted</strong> by the employer. You can now chat with them via the portal.</p><p>Best,<br/>Skill-Match Team</p>`,
+      };
 
-    await transporter.sendMail(mailOptions);
-  } catch (mailErr) {
-    console.error("Failed to send acceptance email:", mailErr?.message || mailErr);
-    // Continue even if email fails
+      await transporter.sendMail(mailOptions);
+    } catch (mailErr) {
+      // Common cause: ECONNREFUSED when no SMTP server is reachable at given host/port
+      console.error("Failed to send acceptance email:", mailErr?.message || mailErr);
+      if (mailErr && mailErr.code === 'ECONNREFUSED') {
+        console.error("ECONNREFUSED connecting to SMTP server. Make sure SMTP_HOST and SMTP_PORT are correct and the SMTP server is reachable. For local development use a service like Mailtrap or set SMTP env vars to a real provider (SendGrid, Gmail SMTP with app password, etc.).");
+      }
+      // Continue even if email fails
+    }
   }
-
-  res.status(200).json({ success: true, message: "Application accepted and chat initialized", application, chat });
 });
 
 export const jobseekerGetAllApplications = catchAsyncErrors(
