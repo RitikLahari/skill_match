@@ -3,6 +3,8 @@ import ErrorHandler from "../middlewares/error.js";
 import { Application } from "../models/applicationSchema.js";
 import { Job } from "../models/jobSchema.js";
 import cloudinary from "cloudinary";
+import { Chat } from "../models/chatSchema.js";
+import nodemailer from "nodemailer";
 
 export const postApplication = catchAsyncErrors(async (req, res, next) => {
   const { role } = req.user;
@@ -117,6 +119,55 @@ export const employerGetAllApplications = catchAsyncErrors(
     });
   }
 );
+
+export const acceptApplication = catchAsyncErrors(async (req, res, next) => {
+  // only employer
+  if (req.user.role !== "Employer") {
+    return next(new ErrorHandler("Only employers can accept applications.", 403));
+  }
+  const { id } = req.params; // application id
+  const application = await Application.findById(id);
+  if (!application) return next(new ErrorHandler("Application not found", 404));
+  if (application.isAccepted) return res.status(200).json({ success: true, message: "Application already accepted", application });
+
+  // mark accepted and create chat
+  application.isAccepted = true;
+  // create or find chat
+  let chat = await Chat.findOne({ employerId: application.employerID.user, jobSeekerId: application.applicantID.user });
+  if (!chat) {
+    chat = await Chat.create({ employerId: application.employerID.user, jobSeekerId: application.applicantID.user, messages: [] });
+  }
+  application.chatId = chat._id;
+  await application.save();
+
+  // Send acceptance email (best-effort)
+  try {
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : 587,
+      secure: process.env.SMTP_SECURE === "true",
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_FROM || process.env.SMTP_USER,
+      to: application.email,
+      subject: "Your application has been accepted",
+      text: `Hello ${application.name},\n\nGood news — your application has been accepted by the employer. You can now chat with them via the portal.\n\nBest,\nSkill-Match Team`,
+      html: `<p>Hello ${application.name},</p><p>Good news — your application has been <strong>accepted</strong> by the employer. You can now chat with them via the portal.</p><p>Best,<br/>Skill-Match Team</p>`,
+    };
+
+    await transporter.sendMail(mailOptions);
+  } catch (mailErr) {
+    console.error("Failed to send acceptance email:", mailErr?.message || mailErr);
+    // Continue even if email fails
+  }
+
+  res.status(200).json({ success: true, message: "Application accepted and chat initialized", application, chat });
+});
 
 export const jobseekerGetAllApplications = catchAsyncErrors(
   async (req, res, next) => {

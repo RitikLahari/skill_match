@@ -67,9 +67,44 @@
   border-color: #007bff;
 }
 
+.chat-icon {
+  display: inline-block;
+  margin-top: 8px;
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.accept-btn {
+  background: #06b6d4;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.chat-btn {
+  background: #10b981;
+  color: #1e00ff;
+  border: none;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
 /* Buttons */
 .btn_area button {
-  background: #e74c3c;
+  background: #024eff;
   color: #fff;
   border: none;
   padding: 10px 18px;
@@ -83,6 +118,9 @@
 .btn_area button:hover {
   background: #c0392b;
 }
+
+.btn_area .chat-btn:hover { background: #0ea86c }
+.btn_area .accept-btn:hover { filter: brightness(0.95) }
 
 /* Top Candidate badge */
 .top-candidate-badge {

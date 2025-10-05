@@ -131,12 +131,12 @@
   .footer-container {
     padding: 2rem;
   }
-  
+   
   .footer-content {
     flex-direction: column;
     gap: 2rem;
   }
-
+ 
   .footer-section {
     text-align: center;
   }

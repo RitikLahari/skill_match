@@ -59,6 +59,14 @@ const applicationSchema = new mongoose.Schema({
       required: true,
     },
   },
+  isAccepted: {
+    type: Boolean,
+    default: false,
+  },
+  chatId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Chat",
+  },
 });
 
 export const Application = mongoose.model("Application", applicationSchema);

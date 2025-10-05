@@ -1,0 +1,58 @@
+.chat-modal-overlay {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1100;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.chat-modal {
+  width: 360px;
+  max-height: 560px;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(2,6,23,0.12);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(16,24,40,0.04);
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(15,23,42,0.04);
+  background: linear-gradient(90deg, rgba(99,102,241,0.06), rgba(96,165,250,0.04));
+}
+.chat-header h4 { margin:0; font-size:16px; color:#0f172a; }
+.chat-header button { background:transparent; border:0; cursor:pointer; font-weight:600; color:#334155 }
+
+.chat-messages {
+  padding: 14px;
+  overflow-y: auto;
+  flex: 1;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.bubble {
+  margin-bottom: 12px;
+  max-width: 78%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(2,6,23,0.04);
+  display: inline-block;
+}
+.bubble .time { display:block; font-size:11px; color:#64748b; margin-top:8px; }
+.bubble.sender { background: linear-gradient(90deg,#dcf8c6,#c9f5b9); margin-left: auto; border-bottom-right-radius: 4px; }
+.bubble.receiver { background: #fff; margin-right: auto; border: 1px solid rgba(15,23,42,0.04); border-bottom-left-radius: 4px; }
+
+.chat-input { display:flex; gap:8px; padding:12px; border-top:1px solid rgba(15,23,42,0.04); align-items:center }
+.chat-input input { flex:1; padding:10px 12px; border-radius:999px; border:1px solid rgba(15,23,42,0.06); outline:none }
+.chat-input input:focus { box-shadow: 0 6px 18px rgba(59,130,246,0.08); }
+.chat-input button { background:#2563eb; color:#fff; border:none; padding:8px 14px; border-radius:999px; cursor:pointer; box-shadow: 0 6px 18px rgba(37,99,235,0.12) }
+
+@media (max-width: 480px) {
+  .chat-modal { width: 92vw; right: 4vw; }
+}
